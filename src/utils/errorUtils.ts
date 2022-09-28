@@ -9,7 +9,6 @@ export function isAppError(error: object): error is AppError {
     if (type === "not_found") return 404;
     if (type === "unauthorized") return 401;
     if (type === "wrong_schema") return 422;
-    if (type === "internal-server-eror") return 500;
     return 400;
   }
   
