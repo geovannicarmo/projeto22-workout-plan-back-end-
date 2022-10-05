@@ -10,7 +10,7 @@
   "author": "Geovanni do Carmo",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^4.4.0",
+    "@prisma/client": "^4.3.1",
     "@sendgrid/mail": "^7.7.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",

@@ -6,8 +6,9 @@ export const singUpSchema = joi.object({
     password: joi.string().required(),
 })
 
-export const singInSchema = joi.object({
+export const GymGoerSchema = joi.object({
     email: joi.string().email().required(),
-    password: joi.string().required(),
+    name: joi.string().required(),
+    photo: joi.string().uri().required()
 })
 

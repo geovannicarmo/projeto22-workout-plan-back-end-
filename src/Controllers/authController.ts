@@ -2,14 +2,19 @@ import authService from "../Services/authService";
 import { Request, Response } from 'express'
 
 
-export function signUpController(req: Request, res: Response){
+export async function GymGoerRegisterController(req: Request, res: Response){
 
-    authService.signUpService("pp")
+    await authService.GymGoerRegisterService(req.body)
+
+
+    res.sendStatus(201)
 }
 
 
-export function signInController(req: Request, res: Response){
+export async function signInController(req: Request, res: Response){
 
-    authService.signUpService("pp")
-    
+        const token = await authService.signInService(req.body)
+        res.send(token)
+   
+
 }

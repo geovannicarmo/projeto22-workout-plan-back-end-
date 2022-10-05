@@ -1,0 +1,1 @@
+import { PersonalTrainers } from "@prisma/client";
