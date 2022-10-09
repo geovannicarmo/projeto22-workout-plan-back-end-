@@ -13,6 +13,8 @@ export async function GymGoerRegisterController(req: Request, res: Response){
 
 export async function signInController(req: Request, res: Response){
 
+    console.log(req.body)
+
         const token = await authService.signInService(req.body)
         res.send(token)
    

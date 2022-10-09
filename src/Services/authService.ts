@@ -71,6 +71,8 @@ sgMail
 
 export async function signInService(dataLogin: any) {
 
+    console.log(dataLogin)
+
     const dataUser = await authRepository.findByEmail(dataLogin.email)
     
     if(!dataUser){

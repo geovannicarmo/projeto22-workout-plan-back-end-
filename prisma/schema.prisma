@@ -28,6 +28,33 @@ model  GymGoers {
   password    String 
   name        String
   photo       String
+
+  Exercises Exercises[]
 }
+
+model  Exercises {
+
+  id          Int    @id @default(autoincrement())
+  nRepetitions        Int
+  nSeries Int
+  carga       Int
+
+  ExercisesCategoryId Int
+  category     ExercisesCategory   @relation(fields: [ExercisesCategoryId], references: [id])
+
+    GymGoersId Int
+  GymGoers     GymGoers   @relation(fields: [GymGoersId], references: [id])
+}
+
+
+model  ExercisesCategory {
+
+  id          Int    @id @default(autoincrement())
+  label        String
+
+  Exercises Exercises[]
+}
+
+
 
 

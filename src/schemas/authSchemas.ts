@@ -1,9 +1,9 @@
 import joi from "joi";
 
 export const singUpSchema = joi.object({
-    name: joi.string().required(),
     email: joi.string().email().required(),
     password: joi.string().required(),
+    typeUser: joi.string().required()
 })
 
 export const GymGoerSchema = joi.object({
