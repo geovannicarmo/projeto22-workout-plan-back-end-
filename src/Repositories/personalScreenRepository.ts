@@ -43,12 +43,33 @@ async function findCaregory(){
     return await client.exercisesCategory.findMany()
 }
 
+async function deleteExercisesRepository(id: number){
+
+    return await client.exercises.delete({
+        where: {
+            id
+          }
+    })
+}
+
+
+async function findExerciseById(id: number){
+
+    return await client.exercises.findUnique({
+        where: {
+            id
+          }
+        })
+    }
+
 
 const personalScreenRepository = {
     findAllGymGoers,
     newExercises,
     findGymGoerById,
-    findCaregory
+    findCaregory,
+    deleteExercisesRepository,
+    findExerciseById
     
 } 
 

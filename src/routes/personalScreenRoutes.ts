@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { personalScreenController, newExercisesController, eachGymGoerController, exerciseCategoryController } from "../Controllers/personalScreenController";
+import { personalScreenController, newExercisesController, eachGymGoerController, deleteExercisesController, exerciseCategoryController } from "../Controllers/personalScreenController";
 import verifyTokenMiddlewerw from "../medleweres/verifyTokenMiddlewerw";
 
 const routerPersonalScreen = Router()
@@ -11,6 +11,8 @@ routerPersonalScreen.post('/newExercises',verifyTokenMiddlewerw, newExercisesCon
 routerPersonalScreen.get('/eachGymGoer/:idGymGoers',verifyTokenMiddlewerw, eachGymGoerController)
 
 routerPersonalScreen.get('/exerciseCategory',verifyTokenMiddlewerw, exerciseCategoryController)
+
+routerPersonalScreen.delete('/deleteExercises/:idExercise',verifyTokenMiddlewerw, deleteExercisesController)
 
 
 export default routerPersonalScreen

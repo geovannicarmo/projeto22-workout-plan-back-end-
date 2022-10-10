@@ -1,4 +1,6 @@
+import { number } from 'joi'
 import personalScreenRepository from '../Repositories/personalScreenRepository'
+import {notFoundError} from '../utils/errorUtils'
 
 async function getAllGymGoersService(){
    
@@ -34,11 +36,26 @@ async function exerciseCategoryService() {
 }
 
 
+async function deleteExercisesService(idExercise: number) {
+    
+   const isExercise = await personalScreenRepository.findExerciseById(idExercise)
+
+   console.log(isExercise)
+
+   if(!isExercise){
+    throw notFoundError('exercise not found')
+   }
+
+    return personalScreenRepository.deleteExercisesRepository(idExercise)
+}
+
+
 const personalScreenService = {
     getAllGymGoersService,
     newExercisesService,
     eachGymGoerService,
-    exerciseCategoryService
+    exerciseCategoryService,
+    deleteExercisesService
 }
 
 export default personalScreenService

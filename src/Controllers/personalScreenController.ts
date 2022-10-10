@@ -37,3 +37,15 @@ export async function exerciseCategoryController(req:Request, res:Response){
     console.log("eachGymGoer")
         res.send(exerciseCategory)
 }
+
+
+export async function deleteExercisesController(req:Request, res:Response){
+
+    const idExercise = parseInt(req.params.idExercise)
+
+
+    const exerciseCategory = await personalScreenService.deleteExercisesService(idExercise)
+    
+        res.send("deleted")
+}
+deleteExercisesController
