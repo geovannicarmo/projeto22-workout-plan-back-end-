@@ -18,6 +18,7 @@ model personalTrainers {
   password    String 
   name        String
   photo       String
+  typeUser    String
 }
 
 
@@ -28,8 +29,19 @@ model  GymGoers {
   password    String 
   name        String
   photo       String
+  typeUser    String
 
   Exercises Exercises[]
+}
+
+model  Adm {
+
+  id          Int    @id @default(autoincrement())
+  email       String @unique
+  password    String 
+  name        String
+  photo       String
+  typeUser    String
 }
 
 model  Exercises {
@@ -38,6 +50,10 @@ model  Exercises {
   nRepetitions        Int
   nSeries Int
   carga       Int
+  break Int @default(30)
+  program String @default("A")
+  comments String?
+
 
   ExercisesCategoryId Int
   category     ExercisesCategory   @relation(fields: [ExercisesCategoryId], references: [id])

@@ -1,76 +1,72 @@
-import client from "../database/prisma";
+import client from '../database/prisma';
+import { Exercises } from '@prisma/client';
 
 async function findAllGymGoers(){
-
-    return await client.gymGoers.findMany()
+	return await client.gymGoers.findMany({
+		select:{
+			id:true,
+			name:true,
+			photo:true
+		}
+	});
 }
 
-async function newExercises(dataNewExercises: any){
-console.log(dataNewExercises.exes)
-    const opa = await client.exercises.createMany({
-        data: dataNewExercises
-    })
-
-     console.log(opa)
+async function newExercises(dataNewExercises: Ex){
+	await client.exercises.create({
+		data: dataNewExercises
+	});
 }
 
 async function findGymGoerById(id: number){
-
-    return await client.gymGoers.findUnique({
-        where: {
-            id,
-          },
-          select:{
-            name:true,
-            photo:true,
-            Exercises: {
-                
-                include:{
-                    
-                    category:true
-                }
-            },
-               
-                
-          }
-        })
-    
+	return await client.gymGoers.findUnique({
+		where: {
+			id,
+		},
+		select:{
+			name:true,
+			photo:true,
+			Exercises: {
+				include:{
+					category:true
+				}
+			},
+		}
+	});
 }
 
 
 async function findCaregory(){
-
-    return await client.exercisesCategory.findMany()
+	return await client.exercisesCategory.findMany();
 }
 
 async function deleteExercisesRepository(id: number){
-
-    return await client.exercises.delete({
-        where: {
-            id
-          }
-    })
+	return await client.exercises.delete({
+		where: {
+			id
+		}
+	});
 }
 
 
 async function findExerciseById(id: number){
-
-    return await client.exercises.findUnique({
-        where: {
-            id
-          }
-        })
-    }
+	return await client.exercises.findUnique({
+		where: {
+			id
+		}
+	});
+}
 
 
 const personalScreenRepository = {
-    findAllGymGoers,
-    newExercises,
-    findGymGoerById,
-    findCaregory,
-    deleteExercisesRepository,
-    findExerciseById
-    
-} 
+	findAllGymGoers,
+	newExercises,
+	findGymGoerById,
+	findCaregory,
+	deleteExercisesRepository,
+	findExerciseById
+}; 
 
-export default personalScreenRepository
+export default personalScreenRepository;
+
+
+type Ex =Omit<Exercises, 'id'>

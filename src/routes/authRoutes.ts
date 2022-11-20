@@ -1,13 +1,14 @@
-import { Router } from "express";
-import { GymGoerRegisterController, signInController} from "../Controllers/authController"; 
-import {singUpSchema, GymGoerSchema} from "../schemas/authSchemas";
-import schemasMidlewares from "../medleweres/schemasMidlewares";
-import verifyTokenMiddlewerw from '../medleweres/verifyTokenMiddlewerw'
+import { Router } from 'express';
+import { signInController} from '../Controllers/authController'; 
+import {singUpSchema, UpdatePassSchemas} from '../schemas/authSchemas';
+import schemasMidlewares from '../medleweres/schemasMidlewares';
+import verifyTokenMiddlewerw from '../medleweres/verifyTokenMiddlewerw';
+import { updatePassController } from '../Controllers/authController';
 
-const authRoutes = Router()
+const authRoutes = Router();
 
-authRoutes.post('/singIn', schemasMidlewares(singUpSchema), signInController)
+authRoutes.post('/singIn', schemasMidlewares(singUpSchema), signInController);
 
-authRoutes.post('/GymGoerRegister', verifyTokenMiddlewerw, schemasMidlewares(GymGoerSchema), GymGoerRegisterController)
+authRoutes.put('/updatePass', schemasMidlewares(UpdatePassSchemas), verifyTokenMiddlewerw,updatePassController);
 
-export default authRoutes
+export default authRoutes;

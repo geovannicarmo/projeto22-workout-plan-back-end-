@@ -1,1 +1,1 @@
-import { PersonalTrainers } from "@prisma/client";
+import { personalTrainers } from '@prisma/client';
